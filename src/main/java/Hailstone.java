@@ -16,20 +16,21 @@
  */
 
 public class Hailstone {
-
-    public static void main(String[] args){}
-    
-    /** COMPLETE THIS METHOD
-     * Precondition: n > 0
-     * Returns the length of a hailstone sequence that starts with n,
-     * the length of a hailstone sequence is the number of terms it contains.
-     * Given the example above the length would be 6.
-     */
-    public static int hailstoneLength(int n) { 
-        
-        return 0;
+    public static int HailstoneLength(int n) { 
+        int length = 1;  // count the starting number itself
+        while (n != 1) {
+            if (n % 2 == 0) { // even
+                n = n / 2;
+            } else {          // odd
+                n = 3 * n + 1;
+            }
+            length++;
+        }
+        return length;
     }
 
+
+    
     /** COMPLETE THIS METHOD
      * Precondition: n > 0
      * Returns true if the hailstone sequence that starts with n is considered long
@@ -39,9 +40,28 @@ public class Hailstone {
      * therfore, the hailstone sequence is considered long.
      */
     public static boolean isLongSeq(int n) { 
-        
-        return false;
+        return hailstoneLength(n) > n;
     }
+        /** COMPLETE THIS METHOD
+     * Precondition: n > 0
+     * Returns the length of a hailstone sequence that starts with n,
+     * the length of a hailstone sequence is the number of terms it contains.
+     * Given the example above the length would be 6.
+     */
+    public static int hailstoneLength(int n) { 
+         int length = 1; // count the starting number itself
+
+    while (n != 1) {
+        if (n % 2 == 0) {
+            n = n / 2;     // even
+        } else {
+            n = 3 * n + 1; // odd
+        }
+        length++;
+    }
+
+    return length;
+}
 
     /** COMPLETE THIS METHOD
      * Precondition: n > 0
@@ -52,7 +72,14 @@ public class Hailstone {
      * NOTE: isLongSeq() is required to work properly for accuate results.
      */
     public static double propLong(int n) {
-        
-        return 0.0;
+        int longCount = 0;
+
+    for (int i = 1; i <= n; i++) {
+        if (isLongSeq(i)) {
+            longCount++;
+        }
+    }
+
+    return (double) longCount / n;
     }
 }
